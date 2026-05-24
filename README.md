@@ -15,6 +15,8 @@ NewsAPI → Airflow (scheduler) → Kafka (queue) → Python Consumer → Elasti
 3. Track progress in [PROGRESS.md](PROGRESS.md).
 4. When something breaks, check [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
+**Cursor / AI:** See [AGENTS.md](AGENTS.md) and [context/](context/) for agent rules and trunk-based Git workflow.
+
 ## Project structure
 
 | Path | Purpose |

@@ -1,0 +1,31 @@
+---
+description: Trunk-based Git workflow for this repo
+alwaysApply: true
+---
+
+# Git — trunk-based
+
+Full guide: `context/git-workflow.md`
+
+## Workflow
+
+- **Trunk:** `master` is the integration branch
+- **Pull** before work: `git pull origin master`
+- **Branches:** optional `feature/<name>`, merge within 1–2 days, then delete
+- **Commits:** small, one logical change; types: `feat`, `fix`, `docs`, `chore`
+
+## Safety
+
+```bash
+git status          # .env must NOT appear staged
+git check-ignore .env
+```
+
+Never commit: `.env`, secrets, `logs/`, `.venv/`.
+
+Never: `push --force` to `master`, `--no-verify`, amend unless user asks.
+
+## When user says "push"
+
+1. Confirm clean status and no secrets in `git diff`
+2. `git push origin master`

@@ -1,0 +1,31 @@
+---
+description: Core rules for news-pipeline — read context/ and docs/
+alwaysApply: true
+---
+
+# news-pipeline — core
+
+Read `AGENTS.md` and `context/agent-guidelines.md` before coding.
+
+## Project
+
+Real-time news pipeline: NewsAPI → Airflow → Kafka → Python consumer → Elasticsearch → Kibana.
+
+## Agent must
+
+- Follow `docs/` phase order unless user overrides
+- Keep changes minimal; match patterns in course docs
+- Run Checkpoint commands from the active `docs/*.md` and report results
+- Never commit `.env`, keys, `logs/`, `.venv/`
+
+## Agent must not
+
+- Push or commit unless the user explicitly asks
+- Rewrite course docs without request
+- Use `localhost` for Kafka/ES from inside Docker containers (use service names)
+
+## Paths
+
+- Code: `producer/`, `consumer/`, `dags/`, `scripts/`
+- Learning: `docs/`, `PROGRESS.md`
+- Context: `context/`

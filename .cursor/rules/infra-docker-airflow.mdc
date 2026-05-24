@@ -1,0 +1,28 @@
+---
+description: Docker Compose, Airflow DAGs, and shell scripts
+globs: docker-compose.yml,dags/**/*.py,scripts/**/*
+alwaysApply: false
+---
+
+# Infrastructure
+
+## docker-compose.yml
+
+- Full stack definition lives in `docs/01-docker.md` Task 4 when empty
+- Kafka listeners: host `localhost:9092`, internal `kafka:29092`
+- Mount `./dags` and `./producer` into Airflow
+
+## Airflow DAGs (`dags/`)
+
+- One DAG per file; unique `dag_id`
+- `catchup=False` for this project
+- `news_fetch_dag`: schedule `*/10 * * * *`, runs producer
+- See `docs/03-airflow.md`
+
+## Scripts (`scripts/`)
+
+- Bash with `set -euo pipefail`
+- Run from repo root via `scripts/*.sh`
+- Do not embed secrets in scripts
+
+Verify: `./scripts/health_check.sh` after `docker compose up -d`.

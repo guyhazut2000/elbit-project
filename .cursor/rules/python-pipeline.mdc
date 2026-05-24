@@ -1,0 +1,28 @@
+---
+description: Python producer/consumer conventions
+globs: producer/**/*.py,consumer/**/*.py
+alwaysApply: false
+---
+
+# Python — producer & consumer
+
+## Stack
+
+- `requests`, `kafka-python`, `python-dotenv`, `elasticsearch`, `textblob`
+- Load config via `load_dotenv()` from repo-root `.env`
+
+## Patterns
+
+- JSON Kafka values; URL as message key when possible
+- Idempotent ES indexing: document `id` = article URL
+- English comments on non-obvious logic only
+- Exit non-zero on failure; print clear errors to stderr
+
+## Connectivity
+
+| From | Kafka | Elasticsearch |
+|------|-------|-----------------|
+| Host (venv) | `localhost:9092` | `http://localhost:9200` |
+| Airflow container | `kafka:29092` | N/A in producer DAG |
+
+Reference implementations: `docs/02-kafka.md`, `docs/04-elasticsearch.md`.
