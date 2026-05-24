@@ -1,0 +1,25 @@
+---
+description: Code review expectations before merging PRs
+alwaysApply: true
+---
+
+# Code review
+
+Full guide: `context/code-review.md`
+
+## Before opening a PR
+
+- One task per PR; minimal diff
+- Run Checkpoint commands from active `docs/*.md`; report pass/fail in PR
+- Confirm `.env` and secrets are not in `git diff`
+
+## After opening a PR
+
+- Stop and wait for **David** (or repo owner) to review
+- Do not merge or push to `master` unless user explicitly requests after approval
+
+## PR must include
+
+- Summary (what + why)
+- Doc/task reference (e.g. `docs/01-docker.md` Task 4)
+- Test plan with Checkpoint command output
