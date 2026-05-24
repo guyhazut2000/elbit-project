@@ -2,12 +2,12 @@
 
 <!-- Update as you progress -->
 
-- **Phase:** 1 — Docker (pending)
+- **Phase:** 1 — Docker
 - **Doc:** `docs/01-docker.md`
-- **Blocked on:** Git/PR workflow PR merged (see open PR)
-- **Last verified checkpoint:** Tasks 1–3 (Docker install, first container, compose structure)
+- **Blocked on:** Task 5 checkpoints (`docker compose up -d`)
+- **Last verified checkpoint:** Task 4 — `docker compose config` (pending PR merge)
 
 ## Next action
 
-1. Merge PR: Git workflow + code review guides
-2. **Phase 1 together:** `docs/01-docker.md` Task 4 — fill `docker-compose.yml`, then Task 5 — `docker compose up -d`
+1. Review PR: `feature/phase-1-docker-compose` (docker-compose.yml)
+2. Run together: `docker compose up -d` and Task 5 checkpoints
