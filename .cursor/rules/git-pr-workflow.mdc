@@ -1,0 +1,31 @@
+---
+description: Branch + PR workflow — all code changes via reviewed pull requests
+alwaysApply: true
+---
+
+# Git — branch + PR required
+
+Full guides: `context/git-workflow.md`, `context/code-review.md`
+
+## Workflow
+
+1. `git pull origin master` → `git checkout -b feature/<name>`
+2. Implement one task; commit; push branch
+3. `gh pr create` — fill template with Checkpoint commands
+4. **Wait for review** — do not merge unless user asks after approval
+
+## Rules
+
+- **Never** commit implementation work directly to `master`
+- Branch names: `feature/*`, `chore/*`, `fix/*`
+- Commits: `feat:`, `fix:`, `docs:`, `chore:` + short description
+- Delete branch after merge
+
+## Safety
+
+```bash
+git status          # .env must NOT appear staged
+git diff            # no secrets before commit
+```
+
+Never: `push --force` to `master`, `--no-verify`, amend unless user asks.

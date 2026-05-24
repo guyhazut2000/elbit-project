@@ -13,7 +13,8 @@ Help the learner build a **real-time news pipeline** by implementing code in thi
 5. **Docker vs host** — From laptop: `localhost:9092`, `localhost:9200`. From containers: `kafka:29092`, `http://elasticsearch:9200`.
 6. **Checkpoints** — After each task, run the Checkpoint commands from that doc and report pass/fail.
 7. **PROGRESS.md** — Suggest checking boxes when a phase task is verified; do not edit unless the user asks.
-8. **Commits** — Only when the user asks. Use clear messages; no secrets in diff.
+8. **Git / PRs** — Always work on a branch (`feature/*`, `chore/*`, `fix/*`). Open a PR for every change; see `context/git-workflow.md` and `context/code-review.md`. Wait for review before merge.
+9. **Commits** — Only when the user asks. Use clear messages; no secrets in diff.
 
 ## Where code lives
 
