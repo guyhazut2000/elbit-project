@@ -19,33 +19,33 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 
 ## Phase 1 — Docker ([01-docker.md](docs/01-docker.md))
 
-- [ ] Task 1: Install Docker Desktop
-- [ ] Task 2: Run `hello-world` container
-- [ ] Task 3: Understand `docker-compose.yml` structure
-- [ ] Task 4: Write full `docker-compose.yml` (Zookeeper, Kafka, ES, Kibana, Airflow)
-- [ ] Task 5: `docker compose up -d` — all services healthy
+- [x] Task 1: Install Docker Desktop
+- [x] Task 2: Run `hello-world` container
+- [x] Task 3: Understand `docker-compose.yml` structure
+- [x] Task 4: Write full `docker-compose.yml` (Zookeeper, Kafka, ES, Kibana, Airflow)
+- [x] Task 5: `docker compose up -d` — all services healthy
 
 ---
 
 ## Phase 2 — Kafka ([02-kafka.md](docs/02-kafka.md))
 
-- [ ] Task 1: Verify Kafka is running
-- [ ] Task 2: Create topic `news-raw`
-- [ ] Task 3: Send test message via CLI
-- [ ] Task 4: Read message back via CLI
-- [ ] Task 5: Write `producer/producer.py`
-- [ ] Task 6: Test producer — messages in topic
+- [x] Task 1: Verify Kafka is running
+- [x] Task 2: Create topic `news-raw`
+- [x] Task 3: Send test message via CLI
+- [x] Task 4: Read message back via CLI
+- [x] Task 5: Write `producer/producer.py`
+- [x] Task 6: Test producer — messages in topic
 
 ---
 
 ## Phase 3 — Airflow ([03-airflow.md](docs/03-airflow.md))
 
-- [ ] Task 1: Open Airflow UI at http://localhost:8080
-- [ ] Task 2: Understand DAG file structure
-- [ ] Task 3: Test DAG prints "hello"
-- [ ] Task 4: Production DAG runs producer every 10 minutes
-- [ ] Task 5: Monitor DAG runs in UI
-- [ ] Task 6: Configure retries / failure handling
+- [x] Task 1: Open Airflow UI at http://localhost:8080
+- [x] Task 2: Understand DAG file structure
+- [x] Task 3: Test DAG prints "hello"
+- [x] Task 4: Production DAG runs producer every 10 minutes
+- [x] Task 5: Monitor DAG runs in UI
+- [x] Task 6: Configure retries / failure handling
 
 ---
 
@@ -93,5 +93,5 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 
 | Date | Phase | What I learned / blocked on |
 |------|-------|-----------------------------|
-|      |       |                             |
-|      |       |                             |
+| 2026-05-24 | 1 | Stack up; first `up` needed manual `docker pull postgres:15` |
+| 2026-05-24 | 2 | Producer OK; bumped kafka-python for Python 3.12 |

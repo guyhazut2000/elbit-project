@@ -16,11 +16,11 @@ Real-time news pipeline: NewsAPI → Airflow → Kafka → Python consumer → E
 - Follow `docs/` phase order unless user overrides
 - Keep changes minimal; match patterns in course docs
 - Run Checkpoint commands from the active `docs/*.md` and report results
+- When a phase task is finished and verified: commit, push branch to `origin`, update `PROGRESS.md` / `context/phases/current.md`
 - Never commit `.env`, keys, `logs/`, `.venv/`
 
 ## Agent must not
 
-- Push or commit unless the user explicitly asks
 - Rewrite course docs without request
 - Use `localhost` for Kafka/ES from inside Docker containers (use service names)
 

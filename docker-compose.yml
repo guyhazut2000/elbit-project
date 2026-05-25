@@ -84,6 +84,9 @@ services:
       _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: admin
       _AIRFLOW_WWW_USER_PASSWORD: admin
+      _PIP_ADDITIONAL_REQUIREMENTS: requests kafka-python>=2.2.0 python-dotenv
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_TOPIC: news-raw
     volumes:
       - ./dags:/opt/airflow/dags
       - ./producer:/opt/airflow/producer
@@ -101,14 +104,18 @@ services:
     depends_on:
       - airflow-init
       - postgres
+      - kafka
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       <<: *airflow-common-env
     volumes:
       - ./dags:/opt/airflow/dags
       - ./producer:/opt/airflow/producer
       - ./logs:/opt/airflow/logs
+      - ./.env:/opt/airflow/.env:ro
     command: webserver
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
@@ -122,12 +129,16 @@ services:
     depends_on:
       - airflow-init
       - postgres
+      - kafka
+    env_file:
+      - .env
     environment:
       <<: *airflow-common-env
     volumes:
       - ./dags:/opt/airflow/dags
       - ./producer:/opt/airflow/producer
       - ./logs:/opt/airflow/logs
+      - ./.env:/opt/airflow/.env:ro
     command: scheduler
 
 volumes:

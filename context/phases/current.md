@@ -2,12 +2,13 @@
 
 <!-- Update as you progress -->
 
-- **Phase:** 1 — Docker
-- **Doc:** `docs/01-docker.md`
-- **Blocked on:** Task 5 checkpoints (`docker compose up -d`)
-- **Last verified checkpoint:** Task 4 — `docker compose config` (pending PR merge)
+- **Phase:** 4 — Elasticsearch & consumer
+- **Doc:** `docs/04-elasticsearch.md`
+- **Blocked on:** —
+- **Last verified checkpoint:** Phase 3 — hello_dag + news_fetch_dag run producer from Airflow (2026-05-24)
 
 ## Next action
 
-1. Review PR: `feature/phase-1-docker-compose` (docker-compose.yml)
-2. Run together: `docker compose up -d` and Task 5 checkpoints
+1. Create Elasticsearch index `news`
+2. Write `consumer/consumer.py` (Kafka → sentiment → Elasticsearch)
+3. Build Kibana dashboard

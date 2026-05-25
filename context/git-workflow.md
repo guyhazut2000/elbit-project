@@ -28,8 +28,10 @@ Delete the branch after merge.
 2. `git checkout -b feature/<short-name>`
 3. Implement **one** logical change (one phase task or one fix)
 4. `git status` — confirm `.env` is **not** staged
-5. Commit with clear messages; push branch
+5. Commit with clear messages; **push branch** (`git push -u origin HEAD`)
 6. Open PR: `gh pr create` (template auto-fills from `.github/pull_request_template.md`)
+
+**Agents:** After completing and verifying a course phase task, commit and push before moving to the next task (unless the user says otherwise).
 7. Wait for review — see `context/code-review.md`
 8. After merge: `git checkout master && git pull origin master`
 
