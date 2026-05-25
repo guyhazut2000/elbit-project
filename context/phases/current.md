@@ -2,12 +2,13 @@
 
 <!-- Update as you progress -->
 
-- **Phase:** 4 — Elasticsearch & Kibana (Task 5 UI) / 6 — Integration
-- **Doc:** `docs/04-elasticsearch.md`, then `docs/06-putting-it-together.md`
+- **Phase:** 6 — Integration (complete) / optional portfolio extras
+- **Doc:** `docs/06-putting-it-together.md`
 - **Blocked on:** —
-- **Last verified checkpoint:** Consumer indexed 51 docs; Kafka lag 0; sentiment agg OK (2026-05-25)
+- **Last verified checkpoint:** `e2e_check.sh` passed (2026-05-25)
 
 ## Next action
 
-1. Build Kibana dashboard per `kibana/README.md` (http://localhost:5601)
-2. Phase 6: full E2E checklist with consumer running + Airflow publishing
+1. Build Kibana dashboard at http://localhost:5601 (`kibana/README.md`)
+2. Optional: GIF demo, GitHub Actions, dead-letter topic (see Phase 6 doc)
+3. Merge feature branches to `master` via PRs

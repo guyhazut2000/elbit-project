@@ -1,55 +1,94 @@
 # Real-Time News Intelligence Pipeline
 
-A hands-on data engineering project: fetch news, queue it, analyze sentiment, search and visualize — built step by step with Docker, Kafka, Airflow, Elasticsearch, and Kibana.
+Ingests headlines from NewsAPI on a schedule, streams them through Kafka, enriches with sentiment analysis, and visualizes trends in Kibana.
 
 ## Architecture
 
 ```
-NewsAPI → Airflow (scheduler) → Kafka (queue) → Python Consumer → Elasticsearch → Kibana
+NewsAPI → Airflow (every 10 min) → producer.py → Kafka (news-raw)
+                                              → consumer.py → Elasticsearch (news) → Kibana
 ```
+
+## Stack
+
+Docker · Zookeeper · Kafka · Airflow · Python · Elasticsearch · Kibana
 
 ## Quick start
 
-1. Clone this repo and open it in your editor.
-2. Read [docs/00-overview.md](docs/00-overview.md) for prerequisites and reading order.
-3. Track progress in [PROGRESS.md](PROGRESS.md).
-4. When something breaks, check [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
+1. Copy `.env.example` to `.env` and set `NEWS_API_KEY` ([NewsAPI](https://newsapi.org/))
+2. Start infrastructure:
 
-**Cursor / AI:** See [AGENTS.md](AGENTS.md) and [context/](context/) for agent rules and trunk-based Git workflow.
+   ```bash
+   cd news-pipeline
+   docker compose up -d
+   bash scripts/health_check.sh
+   ```
+
+3. Python dependencies (host):
+
+   ```bash
+   python -m venv .venv
+   # Windows: .venv\Scripts\activate
+   # Mac/Linux: source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+4. Kafka topic and Elasticsearch index (first time):
+
+   ```bash
+   docker exec kafka kafka-topics --bootstrap-server localhost:9092 --create --if-not-exists --topic news-raw --partitions 1 --replication-factor 1
+   bash scripts/setup_news_index.sh
+   ```
+
+5. **Terminal A** — run the consumer (leave running):
+
+   ```bash
+   python consumer/consumer.py
+   ```
+
+6. **Airflow** — http://localhost:8080 (`admin` / `admin`): enable `news_fetch_dag`, or run once manually:
+
+   ```bash
+   python producer/producer.py
+   ```
+
+7. **Kibana** — http://localhost:5601 — build dashboard per [kibana/README.md](kibana/README.md)
+
+8. Verify end-to-end:
+
+   ```bash
+   bash scripts/e2e_check.sh
+   ```
 
 ## Project structure
 
 | Path | Purpose |
 |------|---------|
 | `docs/` | Step-by-step course (start at `00-overview.md`) |
-| `docker-compose.yml` | All infrastructure services (filled in Phase 1) |
+| `docker-compose.yml` | All infrastructure services |
 | `dags/` | Airflow DAG definitions |
-| `producer/` | Fetches NewsAPI and publishes to Kafka |
-| `consumer/` | Reads Kafka, sentiment analysis, writes Elasticsearch |
-| `scripts/` | Health checks, restarts, log helpers |
-| `kibana/` | Saved objects / dashboard notes (optional exports) |
+| `producer/` | NewsAPI → Kafka |
+| `consumer/` | Kafka → sentiment → Elasticsearch |
+| `scripts/` | Health, E2E, restart, logs |
+| `kibana/` | Dashboard setup guide |
 
-## Prerequisites (summary)
+## What I learned
 
-- Docker Desktop
-- Python 3.10+
-- Free [NewsAPI](https://newsapi.org/) key
-- ~8 GB RAM free for Docker
-- Git
+- Decoupling ingest and processing with a message queue
+- Docker networking (`localhost:9092` vs `kafka:29092`)
+- Orchestration with Airflow (retries, schedule, observability)
+- Operational scripts for health and E2E checks
 
-Full checklist: [docs/00-overview.md](docs/00-overview.md).
+## Interview prep
 
-## Documentation map
+See [docs/INTERVIEW.md](docs/INTERVIEW.md).
 
-| Phase | Doc | Topic |
-|-------|-----|--------|
-| 0 | [00-overview](docs/00-overview.md) | Architecture, stack, plan |
-| 1 | [01-docker](docs/01-docker.md) | Docker & docker-compose |
-| 2 | [02-kafka](docs/02-kafka.md) | Kafka & producer |
-| 3 | [03-airflow](docs/03-airflow.md) | Scheduling |
-| 4 | [04-elasticsearch](docs/04-elasticsearch.md) | Storage & Kibana |
-| 5 | [05-linux-scripts](docs/05-linux-scripts.md) | Ops scripts |
-| 6 | [06-putting-it-together](docs/06-putting-it-together.md) | E2E & portfolio |
+## Course & troubleshooting
+
+- Progress: [PROGRESS.md](PROGRESS.md)
+- Full walkthrough: [docs/00-overview.md](docs/00-overview.md) → [06-putting-it-together.md](docs/06-putting-it-together.md)
+- Fixes: [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- Agents: [AGENTS.md](AGENTS.md), [context/](context/)
 
 ## License
 

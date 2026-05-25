@@ -1,0 +1,12 @@
+# Example cron entries (Linux server / WSL)
+# Edit with: crontab -e
+# Paths must match your machine.
+
+# Health check every hour
+0 * * * * cd /path/to/news-pipeline && ./scripts/health_check.sh >> /var/log/news-pipeline-health.log 2>&1
+
+# Optional: E2E data-path check daily
+0 8 * * * cd /path/to/news-pipeline && ./scripts/e2e_check.sh >> /var/log/news-pipeline-e2e.log 2>&1
+
+# Note: consumer should run as a supervised service (systemd), not cron.
+# Airflow already schedules the producer every 10 minutes.

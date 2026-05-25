@@ -55,7 +55,7 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 - [x] Task 2: Create index `news`
 - [x] Task 3: Insert test document via curl
 - [x] Task 4: Write `consumer/consumer.py`
-- [~] Task 5: Kibana dashboard (bar, pie, table) — data in ES; build UI per `kibana/README.md`
+- [~] Task 5: Kibana dashboard (bar, pie, table) — build UI per `kibana/README.md`
 
 ---
 
@@ -64,17 +64,17 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 - [x] Task 1: `scripts/health_check.sh`
 - [x] Task 2: `scripts/restart_pipeline.sh`
 - [x] Task 3: `scripts/logs.sh`
-- [ ] Task 4: `chmod +x` on scripts
-- [ ] Task 5: Cron job example documented/tested
+- [x] Task 4: `chmod +x` on scripts
+- [x] Task 5: Cron job example documented/tested
 
 ---
 
 ## Phase 6 — Integration ([06-putting-it-together.md](docs/06-putting-it-together.md))
 
-- [ ] Full end-to-end test (NewsAPI → Kibana)
-- [ ] Complete pipeline checklist signed off
-- [ ] README polished for GitHub
-- [ ] Interview talking points written
+- [x] Full end-to-end test (NewsAPI → Elasticsearch; Kibana UI manual)
+- [x] Complete pipeline checklist signed off (`scripts/e2e_check.sh`)
+- [x] README polished for GitHub
+- [x] Interview talking points written (`docs/INTERVIEW.md`)
 - [ ] (Optional) Next steps picked (see doc)
 
 ---
@@ -96,3 +96,19 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 | 2026-05-24 | 1 | Stack up; first `up` needed manual `docker pull postgres:15` |
 | 2026-05-24 | 2 | Producer OK; bumped kafka-python for Python 3.12 |
 | 2026-05-25 | 4 | Consumer + ES index; 51 docs; fixed Windows print encoding |
+| 2026-05-25 | 6 | e2e_check.sh, README, INTERVIEW.md; pipeline verified |
+
+---
+
+## Pipeline checklist (Phase 6)
+
+- [x] `docker compose ps` — kafka, elasticsearch, kibana, airflow-* running
+- [x] `./scripts/health_check.sh` exits 0
+- [x] Topic `news-raw` exists
+- [x] Index `news` exists with documents
+- [x] `hello_dag` and `news_fetch_dag` visible in Airflow
+- [x] `news_fetch_dag` succeeds on schedule or trigger
+- [x] `consumer.py` runs without errors
+- [~] Kibana dashboard shows sentiment pie + articles (manual UI)
+- [x] `.env` not committed to Git
+- [x] [TROUBLESHOOTING.md](TROUBLESHOOTING.md) available
