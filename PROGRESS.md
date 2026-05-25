@@ -51,19 +51,19 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 
 ## Phase 4 — Elasticsearch & Kibana ([04-elasticsearch.md](docs/04-elasticsearch.md))
 
-- [ ] Task 1: Verify Elasticsearch is running
-- [ ] Task 2: Create index `news`
-- [ ] Task 3: Insert test document via curl
-- [ ] Task 4: Write `consumer/consumer.py`
-- [ ] Task 5: Kibana dashboard (bar, pie, table)
+- [x] Task 1: Verify Elasticsearch is running
+- [x] Task 2: Create index `news`
+- [x] Task 3: Insert test document via curl
+- [x] Task 4: Write `consumer/consumer.py`
+- [~] Task 5: Kibana dashboard (bar, pie, table) — data in ES; build UI per `kibana/README.md`
 
 ---
 
 ## Phase 5 — Linux scripts ([05-linux-scripts.md](docs/05-linux-scripts.md))
 
-- [ ] Task 1: `scripts/health_check.sh`
-- [ ] Task 2: `scripts/restart_pipeline.sh`
-- [ ] Task 3: `scripts/logs.sh`
+- [x] Task 1: `scripts/health_check.sh`
+- [x] Task 2: `scripts/restart_pipeline.sh`
+- [x] Task 3: `scripts/logs.sh`
 - [ ] Task 4: `chmod +x` on scripts
 - [ ] Task 5: Cron job example documented/tested
 
@@ -95,3 +95,4 @@ Copy this file or check boxes in GitHub / your editor as you complete each task.
 |------|-------|-----------------------------|
 | 2026-05-24 | 1 | Stack up; first `up` needed manual `docker pull postgres:15` |
 | 2026-05-24 | 2 | Producer OK; bumped kafka-python for Python 3.12 |
+| 2026-05-25 | 4 | Consumer + ES index; 51 docs; fixed Windows print encoding |

@@ -2,13 +2,12 @@
 
 <!-- Update as you progress -->
 
-- **Phase:** 4 — Elasticsearch & consumer
-- **Doc:** `docs/04-elasticsearch.md`
+- **Phase:** 4 — Elasticsearch & Kibana (Task 5 UI) / 6 — Integration
+- **Doc:** `docs/04-elasticsearch.md`, then `docs/06-putting-it-together.md`
 - **Blocked on:** —
-- **Last verified checkpoint:** Phase 3 — hello_dag + news_fetch_dag run producer from Airflow (2026-05-24)
+- **Last verified checkpoint:** Consumer indexed 51 docs; Kafka lag 0; sentiment agg OK (2026-05-25)
 
 ## Next action
 
-1. Create Elasticsearch index `news`
-2. Write `consumer/consumer.py` (Kafka → sentiment → Elasticsearch)
-3. Build Kibana dashboard
+1. Build Kibana dashboard per `kibana/README.md` (http://localhost:5601)
+2. Phase 6: full E2E checklist with consumer running + Airflow publishing
